@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Like Button</title>
+  <style>
+    .like-button {
+      display: flex;
+      align-items: center;
+      background-color: pink;
+      color: white;
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s ease;
+      font-family: Arial, sans-serif;
+    }
+
+    .like-button:hover {
+      background-color: #ff4d94;
+    }
+
+    .like-button:active {
+      background-color: #e60073;
+    }
+
+    .like-button .icon {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+
+    .like-count {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <button class="like-button" id="likeButton">
+    <span class="icon">❤️</span>
+    <span class="like-count" id="likeCount">0</span>
+  </button>
+
+  <script>
+    // Get the button and the like count element
+    const likeButton = document.getElementById('likeButton');
+    const likeCount = document.getElementById('likeCount');
+
+    // Check if the like count is stored in localStorage
+    let likes = localStorage.getItem('likes');
+    if (likes === null) {
+      likes = 0;
+    } else {
+      likes = parseInt(likes, 10);
+    }
+
+    // Update the like count on page load
+    likeCount.textContent = likes;
+
+    // Handle the like button click
+    likeButton.addEventListener('click', () => {
+      likes += 1; // Increment the like count
+      likeCount.textContent = likes; // Update the display
+      localStorage.setItem('likes', likes); // Save the like count in localStorage
+    });
+  </script>
+</body>
+</html>
